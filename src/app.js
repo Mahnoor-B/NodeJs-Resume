@@ -1,7 +1,14 @@
 const express = require('express')
+const http = require('http')
 const exphbs = require('express-handlebars')
 const app = express()
 const path = require('path')
+
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<h1>Hello World</h1>');
+});
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 
@@ -36,6 +43,6 @@ app.get('/contact', function(req, res){
     )
 })
 
-app.listen(8080, ()=> {
+server.listen(8080, ()=> {
     console.log("Server is running on port 8080")
 })
